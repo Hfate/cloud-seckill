@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 
 @RestController
 @Api(tags = "商品")
-@RequestMapping("admin/goods")
+@RequestMapping("goods")
 public class GoodsController {
     @Resource
     private IGoodsService goodsService;

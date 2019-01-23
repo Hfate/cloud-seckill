@@ -40,13 +40,23 @@ public class AccessFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         HttpServletResponse response = ctx.getResponse();
+        //简单检测非登录接口，是否登录
+        if (!request.getRequestURI().contains("login")) {
+            checkLogin(response, request);
+        }
+        return null;
+    }
 
+
+    private void checkLogin(HttpServletResponse response, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         String pcToken = null;
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(COOKIE_NAME_TOKEN)) {
-                pcToken = cookie.getValue();
-                break;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(COOKIE_NAME_TOKEN)) {
+                    pcToken = cookie.getValue();
+                    break;
+                }
             }
         }
         String mobileToken = request.getParameter(COOKIE_NAME_TOKEN);
@@ -59,9 +69,7 @@ public class AccessFilter extends ZuulFilter {
         } else {
             HttpUtil.renderJSON(response, ApiResult.error(NOT_LOGIN));
         }
-        return null;
     }
-
 
     private boolean isLogin(String token) {
         if (StringUtils.isBlank(token)) {
