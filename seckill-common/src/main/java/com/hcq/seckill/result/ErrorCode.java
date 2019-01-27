@@ -6,7 +6,10 @@ public enum ErrorCode {
     USERNAME_NOT_EXIST(500002, "用户名不存在"),
     PASS_WORD_ERROR(500003, "密码错误"),
     STOCK_NOT_ENOUGH(500004, "库存不足,秒杀失败"),
-    ORDER_REPEAT(500006, "重复秒杀");
+    ORDER_REPEAT(500006, "重复秒杀"),
+    REDIS_SET_ERROR(500007, "redis set 异常"),
+    UPDATE_STOCK_FAIL(500008,"更新库存失败")
+    ;
 
 
     private int code;

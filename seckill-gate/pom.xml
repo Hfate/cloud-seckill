@@ -24,10 +24,10 @@
             <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
         <!--zuul限流-->
-        <dependency>
-            <groupId>com.marcosbarbero.cloud</groupId>
-            <artifactId>spring-cloud-zuul-ratelimit</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.marcosbarbero.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-zuul-ratelimit</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

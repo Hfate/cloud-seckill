@@ -1,7 +1,9 @@
 package com.hcq.seckill.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "t_sec_kill_order")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SecKillOrder implements Serializable {
     @Id
     private Long id;
@@ -22,4 +26,5 @@ public class SecKillOrder implements Serializable {
     private Long orderId;
     @Column(name = "goods_id")
     private Long goodsId;
+
 }

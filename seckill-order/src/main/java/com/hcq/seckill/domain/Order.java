@@ -25,7 +25,7 @@ public class Order implements Serializable {
     @Column(name = "goods_count")
     private Integer goodsCount;
     @Column(name = "goods_price")
-    private Double goodsPrice;
+    private Long goodsPrice;
     @Column(name = "order_channel")
     private Integer orderChannel;
     @Column(name = "status")

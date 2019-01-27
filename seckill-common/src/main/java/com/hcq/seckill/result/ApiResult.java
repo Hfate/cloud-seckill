@@ -28,6 +28,10 @@ public class ApiResult<T> {
         this.data = data;
     }
 
+    public boolean isSuccess() {
+        return this.code == 0;
+    }
+
     public static <T> ApiResult<T> success() {
         return success(null);
     }

@@ -1,8 +1,9 @@
 package com.hcq.seckill.service;
 
-import com.hcq.seckill.dto.OrderDto;
+import com.hcq.seckill.domain.SecKillOrder;
+import com.hcq.seckill.model.SecKillDTO;
 
 public interface IOrderService {
 
-    void createOrder(OrderDto orderDto);
+    SecKillOrder createOrder(SecKillDTO orderDto);
 }

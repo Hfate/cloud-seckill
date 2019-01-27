@@ -1,9 +1,9 @@
 package com.hcq.seckill.feign;
 
-public class KeyGenServiceFallback implements KeyGenServiceClient {
+public class KeyGenServiceFallback implements IKeyGenServiceClient {
 
     @Override
-    public Long getKey() {
-        return 0L;
+    public String getKey() {
+        return "";
     }
 }

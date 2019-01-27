@@ -1,7 +1,7 @@
 package com.hcq.seckill.service;
 
 import com.hcq.seckill.domain.SecKillGoods;
-import com.hcq.seckill.dto.GoodsVO;
+import com.hcq.seckill.model.GoodsDTO;
 
 import java.util.List;
 
@@ -27,5 +27,5 @@ public interface ISecKillGoodsService {
      * @param goodsVO
      * @return
      */
-    boolean reduceStock(GoodsVO goodsVO);
+    boolean reduceStock(GoodsDTO goodsVO);
 }

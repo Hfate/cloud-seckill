@@ -2,12 +2,12 @@ package com.hcq.seckill.service.impl;
 
 import com.hcq.seckill.domain.Goods;
 import com.hcq.seckill.domain.SecKillGoods;
+import com.hcq.seckill.model.GoodsDTO;
 import com.hcq.seckill.model.PageQueryParams;
 import com.hcq.seckill.model.Pager;
 import com.hcq.seckill.repository.IGoodsRepository;
 import com.hcq.seckill.service.IGoodsService;
 import com.hcq.seckill.service.ISecKillGoodsService;
-import com.hcq.seckill.dto.GoodsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,11 +29,11 @@ public class GoodsServiceImpl implements IGoodsService {
     public Pager getPage(PageQueryParams pageQueryParams) {
         PageRequest pageRequest = new PageRequest(pageQueryParams.getPageIndex() - 1, pageQueryParams.getPageSize(), new Sort(Sort.Direction.DESC, "id"));
         Page<Goods> page = goodsRepository.findAll(pageRequest);
-        List<GoodsVO> goodsVOS = new ArrayList<>();
-        GoodsVO goodsVO;
+        List<GoodsDTO> goodsVOS = new ArrayList<>();
+        GoodsDTO goodsVO;
         SecKillGoods secKillGoods;
         for (Goods goods : page) {
-            goodsVO = new GoodsVO();
+            goodsVO = new GoodsDTO();
             BeanUtils.copyProperties(goods, goodsVO);
             secKillGoods = secKillGoodsService.findByGoodsId(goods.getId());
             if (secKillGoods != null) {
@@ -44,7 +44,7 @@ public class GoodsServiceImpl implements IGoodsService {
             }
             goodsVOS.add(goodsVO);
         }
-        Pager<GoodsVO> pager = new Pager<>();
+        Pager<GoodsDTO> pager = new Pager<>();
         pager.setList(goodsVOS);
         pager.setTotal(page.getTotalElements());
         pager.setPages(page.getTotalPages());
@@ -52,10 +52,10 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
-    public GoodsVO getSecKillGoods(long goodsId) {
+    public GoodsDTO getSecKillGoods(long goodsId) {
         Goods goods = goodsRepository.findOne(goodsId);
         SecKillGoods secKillGoods = secKillGoodsService.findByGoodsId(goodsId);
-        GoodsVO goodsVO = new GoodsVO();
+        GoodsDTO goodsVO = new GoodsDTO();
         goodsVO.setId(goods.getId());
         goodsVO.setGoodsImg(goods.getGoodsImg());
         goodsVO.setGoodsName(goods.getGoodsName());
@@ -92,7 +92,7 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
-    public boolean reduceStock(Long id) {
+    public boolean reduceStock(Long id, Long version) {
         return goodsRepository.reduceStock(id) > 0;
     }
 }

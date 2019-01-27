@@ -1,10 +1,10 @@
 package com.hcq.seckill.service.impl;
 
 import com.hcq.seckill.domain.SecKillGoods;
+import com.hcq.seckill.model.GoodsDTO;
 import com.hcq.seckill.repository.ISecKillGoodsRepository;
 import com.hcq.seckill.service.IGoodsService;
 import com.hcq.seckill.service.ISecKillGoodsService;
-import com.hcq.seckill.dto.GoodsVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,10 +28,10 @@ public class SecKillGoodsServiceImpl implements ISecKillGoodsService {
     }
 
     @Override
-    public boolean reduceStock(GoodsVO goodsVO) {
+    public boolean reduceStock(GoodsDTO goodsVO) {
         boolean flag = secKillGoodsRepository.reduceStock(goodsVO.getId(), goodsVO.getVersion()) > 0;
         if (flag) {
-            flag = goodsService.reduceStock(goodsVO.getId());
+            flag = goodsService.reduceStock(goodsVO.getId(), goodsVO.getVersion());
         }
         return flag;
     }

@@ -21,7 +21,7 @@ public class Goods implements Serializable {
     @Column(name = "goods_img")
     private String goodsImg;
     @Column(name = "goods_price")
-    private Double goodsPrice;
+    private Long goodsPrice;
     @Column(name = "goods_stock")
     private Integer goodsStock;
 }

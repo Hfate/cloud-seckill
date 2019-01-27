@@ -29,7 +29,7 @@ public class SwaggerConf {
                 .forCodeGeneration(false)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hcq.seckill.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.hcq.seckill.rest"))
                 .build();
     }
 

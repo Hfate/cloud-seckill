@@ -2,7 +2,7 @@ package com.hcq.seckill.service.impl;
 
 import com.hcq.seckill.domain.SecKillOrder;
 import com.hcq.seckill.dto.SecKillOrderDto;
-import com.hcq.seckill.feign.KeyGenServiceClient;
+import com.hcq.seckill.feign.IKeyGenServiceClient;
 import com.hcq.seckill.repository.ISecKillOrderRepository;
 import com.hcq.seckill.service.ISecKillOrderService;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,6 @@ import javax.annotation.Resource;
 public class SecKillOrderServiceImpl implements ISecKillOrderService {
     @Resource
     private ISecKillOrderRepository secKillOrderRepository;
-    @Resource
-    private KeyGenServiceClient keyGenServiceClient;
 
     @Override
     public SecKillOrder findByGoodsIdAndUserId(long userId, long goodsId) {
@@ -22,13 +20,7 @@ public class SecKillOrderServiceImpl implements ISecKillOrderService {
     }
 
     @Override
-    public void createSecKillOrder(SecKillOrderDto secKillOrderDto) {
-        SecKillOrder secKillOrder = SecKillOrder.builder()
-                .id(keyGenServiceClient.getKey())
-                .goodsId(secKillOrderDto.getGoodsId())
-                .userId(secKillOrderDto.getUserId())
-                .orderId(secKillOrderDto.getOrderId())
-                .build();
+    public void save(SecKillOrder secKillOrder) {
         secKillOrderRepository.save(secKillOrder);
     }
 }

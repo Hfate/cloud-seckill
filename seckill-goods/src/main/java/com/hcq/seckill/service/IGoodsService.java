@@ -1,8 +1,8 @@
 package com.hcq.seckill.service;
 
+import com.hcq.seckill.model.GoodsDTO;
 import com.hcq.seckill.model.PageQueryParams;
 import com.hcq.seckill.model.Pager;
-import com.hcq.seckill.dto.GoodsVO;
 
 public interface IGoodsService {
     /**
@@ -13,7 +13,7 @@ public interface IGoodsService {
      */
     Pager getPage(PageQueryParams pageQueryParams);
 
-    GoodsVO getSecKillGoods(long goodsId);
+    GoodsDTO getSecKillGoods(long goodsId);
 
-    boolean reduceStock(Long id);
+    boolean reduceStock(Long id, Long version);
 }
